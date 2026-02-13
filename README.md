@@ -4,6 +4,18 @@ En Python-applikation der søger efter sange med et specifikt ord, downloader de
 
 Applikationen producerer bevidst "rough" og "patchwork"-lydende output — ikke poleret eller normaliseret. Det er meningen at samples skal have forskellig lydstyrke og karakter for at skabe en unik, collage-agtig lydoplevelse.
 
+---
+
+**🚀 Hurtig start:**
+1. Kør `./setup.sh` (eller `setup.bat` på Windows)
+2. Tilføj Genius API token til `.env` filen ([få en gratis her](https://genius.com/api-clients))
+3. Kør `python validate_setup.py` for at tjekke din setup
+4. Kør `python main.py love` for at teste med ordet "love"
+
+**📖 Detaljeret test-guide:** Se [TESTING.md](TESTING.md) for trin-for-trin instruktioner og troubleshooting.
+
+---
+
 ## ✨ Features
 
 - 🔍 **Søger efter sange** med et specifikt ord via Genius API
@@ -196,6 +208,51 @@ Skærer audio-segmenter ud med Pydub og gemmer som individuelle WAV-filer med fa
 - **Processing tid**: AI-analysen tager tid - vær tålmodig!
 - **Download fejl**: Nogle sange kan ikke findes på YouTube - applikationen skipper automatisk disse
 - **API limits**: Genius API har rate limits - undgå at køre mange søgninger hurtigt efter hinanden
+
+## 🧪 Test & Validering
+
+### Hurtig validering
+
+Kør validerings-scriptet for at tjekke din setup:
+
+```bash
+python validate_setup.py
+```
+
+Dette tjekker:
+- ✓ Python version
+- ✓ FFmpeg installation
+- ✓ Virtual environment
+- ✓ Python dependencies
+- ✓ .env konfiguration
+- ✓ Projekt filer
+
+### Test individuelle moduler
+
+Du kan teste hver modul separat:
+
+```bash
+# Test Song Finder
+python -m modules.song_finder
+
+# Test Audio Downloader
+python -m modules.audio_downloader
+
+# Test Word Spotter (kræver en audio fil først)
+python modules/word_spotter.py downloads/din_sang.mp3 love
+
+# Test Splicer (kræver en audio fil først)
+python modules/splicer.py downloads/din_sang.mp3 love
+```
+
+### Komplet test guide
+
+Se [TESTING.md](TESTING.md) for:
+- Trin-for-trin test instruktioner
+- Hvordan man tester hver modul individuelt
+- Troubleshooting for almindelige problemer
+- Performance forventninger
+- Tips til at teste "patchwork" æstetikken
 
 ## 🤝 Bidrag
 
